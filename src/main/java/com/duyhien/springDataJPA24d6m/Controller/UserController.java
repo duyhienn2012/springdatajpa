@@ -102,4 +102,20 @@ public class UserController {
 //            return new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 //        }
     }
+
+    @GetMapping("/list-with-sort-by")
+    public ResponseEntity<?> getAllUsersAndSortBy(@RequestParam(defaultValue = "0", required = false) int pageNo,
+                                       @RequestParam(defaultValue = "20", required = false) int pageSize,
+                                       @RequestParam(required = false) String sortBy) {
+        log.info("Request get all of users");
+        return ResponseEntity.ok(userService.getAllUsersWithSortBy(pageNo, pageSize, sortBy));
+    }
+    @GetMapping("/list-with-sort-by-multiple-columns")
+    public ResponseEntity<?> getAllUsersWithSortByMultipleColumns(@RequestParam(defaultValue = "0", required = false) int pageNo,
+                                                                @RequestParam(defaultValue = "20", required = false) int pageSize,
+                                                                @RequestParam(required = false) String... sorts) {
+        log.info("Request get all of users with sort by multiple columns");
+        return ResponseEntity.ok(userService.getAllUsersWithSortByMultipleColumns(pageNo, pageSize, sorts));
+    }
+
 }

@@ -18,4 +18,8 @@ public interface UserService {
     UserDetailResponse getUser(long userId);
 
     PageResponse getAllUsers(int pageNo, int pageSize);
+
+    PageResponse<?> getAllUsersWithSortBy(int pageNo, int pageSize, String sortBy);
+
+    PageResponse<?> getAllUsersWithSortByMultipleColumns(int pageNo, int pageSize, String... sorts);
 }
